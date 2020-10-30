@@ -61,7 +61,6 @@
                                                         #valorFinanciar="ngModel"
                                                         [(ngModel)]="valorFinanciarCop"
                                                         [options]="{ align: 'left', prefix: '$ ', thousands: '.', decimal: ',', precision: 0 }"
-                                                        (ngModelChange)="changeButtonCliente(cuotas)"
                                                         [min]="minF"
                                                         required>
                                                         <mat-error id="uno" class="col-12 error" *ngIf="valorFinanciar.touched && valorFinanciar.errors?.required" class="error error col-12">Inserta el valor a financiar</mat-error>   
@@ -81,7 +80,7 @@
                                             <span class="radio">
 
                                                 <input id="cuarentaocho" [(ngModel)]="cuotas" name="cuarentaOcho"
-                                                    (click)="changeButtonCliente($event.target);"
+                                                    (click)="changeButtonCliente($event.target.value, valorFinanciarCop);"
                                                     type="radio" value="48">
                                                 <div>
                                                     <div class="mes">48 meses</div>
@@ -91,7 +90,7 @@
                                                 <span class="radio">
                     
                                                     <input id="sesenta" [(ngModel)]="cuotas" name="seSenta"
-                                                        (click)="changeButtonCliente($event.target);"
+                                                        (click)="changeButtonCliente($event.target.value, valorFinanciarCop);"
                                                         type="radio" value="60">
                                                     <div>
                                                         <div class="mes">60 meses</div>
@@ -101,7 +100,7 @@
                                                 <span class="radio">
 
                                                     <input id="setentados" [(ngModel)]="cuotas" name="setentaDos"
-                                                        (click)="changeButtonCliente($event.target);"
+                                                        (click)="changeButtonCliente($event.target.value, valorFinanciarCop);"
                                                         type="radio" value="72">
                                                     <div>
                                                         <div class="mes">72 meses</div>
@@ -110,7 +109,7 @@
                                                 <span class="radio">
     
                                                     <input id="ochentacuatro" [(ngModel)]="cuotas" name="ochentaCuatro"
-                                                        (click)="changeButtonCliente($event.target);"
+                                                        (click)="changeButtonCliente($event.target.value, valorFinanciarCop);"
                                                         type="radio" value="84">
                                                     <div>
                                                         <div class="mes">84 meses</div>

@@ -34,9 +34,8 @@ export class FormStepComponent{
   // Variables Calculadora
   valorCuota:number = 0;
   cuotas:number = 0;
-  tasa:number = 0.01;
-  seguroTotal:number = 0;
-  seguroCuota:number = 0;
+  tasa:number = 0.0115;
+  constanteSeguro: number = 1220 / 1000000;
   
 
   min = this.env.min;
@@ -61,7 +60,7 @@ export class FormStepComponent{
       AutorizaConsultaCentrales: false,  
       AutorizaMareigua: false,  
       ValorFinanciar: null,
-      IdentificacionVendedor: null  
+      IdentificacionVendedor: 121
     },
 
     DatosVehiculo: {
@@ -129,47 +128,36 @@ export class FormStepComponent{
 
    reload()
     {
-    window.location.href="https://www.nissan.com.co/"; 
+    window.location.href="https://www.nissan.com.co/";
     }
 
-    verDetalles(){
-      this.verDetalle = !this.verDetalle;    
+    verDetalles() {
+      this.verDetalle = !this.verDetalle;
     }
 
     /* Calculadora */
 
-changeButtonCliente(val) {
+changeButtonCliente(periodo, monto) {
   
+    const nmv = this.tasa;
+    const seguroTotal = this.calcularTotalSeguro(monto, periodo);
+    const valorCuota = this.functionPago(nmv, periodo, monto);
+    const seguroCuota = this.functionPago(nmv, periodo, seguroTotal);
 
-  const nmv = Math.pow((1 + this.tasa), (1 / 12)) - 1;
-  this.seguroCuota = (1200 / 1000000) * this.valorFinanciarCop;
-  this.contacto.OtrosDatos.ValorFinanciar = this.valorFinanciarCop; 
-  let cuota;
-  if (val !== undefined) {
-
-    if (val.value !== undefined) {
-      cuota = Number(val.value);
-    } else {
-      cuota = Number(val);
-    }
-
+    this.valorCuota = valorCuota + seguroCuota;
   }
 
-  this.seguroTotal  = Math.round(this.seguroCuota * cuota);
-  const vlrActual = Math.round(this.valorFinanciarCop);
-  const vlrPartuno = vlrActual * nmv;
-  let vlrPartdos = Math.pow((1 + nmv), - cuota);
-  vlrPartdos = 1 - vlrPartdos;
-  this.valorCuota = Math.round(vlrPartuno / vlrPartdos);
-  /* Seguro de la cuota */
-  const vlrPartunoSeg = this.seguroTotal * nmv;
-  let vlrPartdosSeg = Math.pow((1 + nmv), - cuota);
-  vlrPartdosSeg = 1 - vlrPartdosSeg;
-  let seguroCta = (Math.round(vlrPartunoSeg) / vlrPartdosSeg);
-  this.seguroCuota = seguroCta;
-  seguroCta = Math.round(seguroCta);
+  functionPago(nmv: number, periodo: any, monto: number) {
+    const parteUno = monto * nmv;
+    const parteDos = 1 - Math.pow((1 + nmv), (- (periodo)));
+    return Math.round(parteUno / parteDos);
   }
-}
+
+  calcularTotalSeguro( monto: number, periodo: any) {
+    return Math.round(this.constanteSeguro * monto * periodo);
+  }
+
+  }
 
 export interface DatosBasicos {
   
