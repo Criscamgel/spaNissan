@@ -175,12 +175,12 @@ html{
     @include tablet() {       
 
         border-radius: 10px;
-        margin: 40px 0px 15px 0px;
+        margin: 100px 0 15px;
         box-shadow: 0 0 6px 0px rgba(0, 0, 0, 0.4);
     }
     
     @include deskopt(){
-        margin: 40px 0px 15px 0px;
+        margin: 100px 0 15px;
     }
     @include bigScreen(){
         margin: 40px 0px 15px 0px;

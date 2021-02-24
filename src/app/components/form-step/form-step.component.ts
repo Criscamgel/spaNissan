@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from '../../../environments/environment.prod';
+import { environment } from '../../../environments/environment';
 import { CentralesService } from '../../services/centrales.service';
-
+import { constantes } from '../../../app/constantes';
 import { registerLocaleData } from '@angular/common';
 import es from '@angular/common/locales/es';
 
@@ -13,7 +13,9 @@ import es from '@angular/common/locales/es';
 })
 export class FormStepComponent{
 
-  constructor(private centrales: CentralesService) { }
+  const = constantes;
+
+  constructor(public centrales: CentralesService) { }
 
   ngOnInit() {
     registerLocaleData( es );
@@ -34,39 +36,13 @@ export class FormStepComponent{
   // Variables Calculadora
   valorCuota:number = 0;
   cuotas:number = 0;
-  tasa:number = 0.0115;
-  constanteSeguro: number = 1220 / 1000000;
+  tasa:number = 0.15;
+  seguroTotal:number = 0;
+  seguroCuota:number = 0;
   
 
   min = this.env.min;
   minF = this.env.minF;
-
-  contacto:ContactoInterface = {
-    DatosBasicos: {
-      TipoDocumento: null,  
-      NumeroDocumento: null,  
-      Nombre1: null,  
-      Celular: null,  
-      CorreoPersonal: null
-    },
-  
-    DatosFinancieros: {  
-      ActividadEconomica: null,  
-      ActividadIndependiente: 3,  
-      IngresoMensual: null  
-    },
-  
-    OtrosDatos: {  
-      AutorizaConsultaCentrales: false,  
-      AutorizaMareigua: false,  
-      ValorFinanciar: null,
-      IdentificacionVendedor: 121
-    },
-
-    DatosVehiculo: {
-      Marca: 13
-    }
-  }
 
   /* Functions */
 
@@ -79,30 +55,30 @@ export class FormStepComponent{
   }
 
   chechedc(this){
-    this.contacto.OtrosDatos.AutorizaMareigua = true;
+    this.centrales.contacto.OtrosDatos.AutorizaMareigua = true;
   }
 
   sendCentrales(this){
     this.editable = false;
     
-    if(this.contacto.DatosFinancieros.ActividadEconomica){
-      if(this.contacto.DatosFinancieros.ActividadEconomica === 1){
-          this.contacto.DatosFinancieros.ActividadEconomica = 1;
-          this.contacto.DatosFinancieros.ActividadIndependiente = 15;
+    if(this.centrales.contacto.DatosFinancieros.ActividadEconomica){
+      if(this.centrales.contacto.DatosFinancieros.ActividadEconomica === 1){
+          this.centrales.contacto.DatosFinancieros.ActividadEconomica = 1;
+          this.centrales.contacto.DatosFinancieros.ActividadIndependiente = 15;
       }
-      if(this.contacto.DatosFinancieros.ActividadEconomica === 11){
-          this.contacto.DatosFinancieros.ActividadEconomica = 1;
-          this.contacto.DatosFinancieros.ActividadIndependiente = 16;
+      if(this.centrales.contacto.DatosFinancieros.ActividadEconomica === 11){
+          this.centrales.contacto.DatosFinancieros.ActividadEconomica = 1;
+          this.centrales.contacto.DatosFinancieros.ActividadIndependiente = 16;
       }
-      if(this.contacto.DatosFinancieros.ActividadEconomica === 2){
-          this.contacto.DatosFinancieros.ActividadEconomica = 2;
-          this.contacto.DatosFinancieros.ActividadIndependiente = 3;
+      if(this.centrales.contacto.DatosFinancieros.ActividadEconomica === 2){
+          this.centrales.contacto.DatosFinancieros.ActividadEconomica = 2;
+          this.centrales.contacto.DatosFinancieros.ActividadIndependiente = 3;
       }
     }
 
-    this.centrales.authenticate(this.contacto);
+    this.centrales.authenticate(this.centrales.contacto);
     setTimeout(() => {
-      this.centrales.response(this.contacto).subscribe((resp:any) => {
+      this.centrales.response(this.centrales.contacto).subscribe((resp:any) => {
         this.respuesta = resp.IdResultado;
         
         if(this.respuesta == 2 || this.respuesta == 3){
@@ -122,77 +98,56 @@ export class FormStepComponent{
 
    checkTyc(this){
     this.modal=false; 
-    this.contacto.OtrosDatos.AutorizaConsultaCentrales=true;
-    this.contacto.OtrosDatos.AutorizaMareigua=true;
+    this.centrales.contacto.OtrosDatos.AutorizaConsultaCentrales=true;
+    this.centrales.contacto.OtrosDatos.AutorizaMareigua=true;
    }
 
    reload()
     {
-    window.location.href="https://www.nissan.com.co/";
+    window.location.href = constantes.linkWebAliado; 
     }
 
-    verDetalles() {
-      this.verDetalle = !this.verDetalle;
+    verDetalles(){
+      this.verDetalle = !this.verDetalle;    
     }
 
     /* Calculadora */
 
-changeButtonCliente(periodo, monto) {
+changeButtonCliente(val) {
   
-    const nmv = this.tasa;
-    const seguroTotal = this.calcularTotalSeguro(monto, periodo);
-    const valorCuota = this.functionPago(nmv, periodo, monto);
-    const seguroCuota = this.functionPago(nmv, periodo, seguroTotal);
 
-    this.valorCuota = valorCuota + seguroCuota;
-  }
+  const nmv = 0.0115;
+  this.centrales.contacto.OtrosDatos.ValorFinanciar = this.valorFinanciarCop;
+  let cuota;
+  if (val !== undefined) {
 
-  functionPago(nmv: number, periodo: any, monto: number) {
-    const parteUno = monto * nmv;
-    const parteDos = 1 - Math.pow((1 + nmv), (- (periodo)));
-    return Math.round(parteUno / parteDos);
-  }
-
-  calcularTotalSeguro( monto: number, periodo: any) {
-    return Math.round(this.constanteSeguro * monto * periodo);
-  }
+    if (val.value !== undefined) {
+      cuota = Number(val.value);
+    } else {
+      cuota = Number(val);
+    }
 
   }
 
-export interface DatosBasicos {
+  this.seguroTotal = ((1220 / 1000000) * this.valorFinanciarCop) * cuota;
   
-  Nombre1?: String; 
-  TipoDocumento?: String;  
-  NumeroDocumento?: String;  
-  Celular?: String;  
-  CorreoPersonal?: String;
+  const vlrActual = Math.round(this.valorFinanciarCop);
+  const vlrPartuno = vlrActual * nmv;
+  let vlrPartdos = Math.pow((1 + nmv), - cuota);
+  vlrPartdos = 1 - vlrPartdos;
+  this.valorCuota = Math.round(vlrPartuno / vlrPartdos);
+
+  /* Seguro de la cuota */
+  const vlrPartunoSeg = this.seguroTotal * nmv;
+  let vlrPartdosSeg = Math.pow((1 + nmv), - cuota);
+  vlrPartdosSeg = 1 - vlrPartdosSeg;
+  let seguroCta = Math.round(vlrPartunoSeg / vlrPartdosSeg);
+  this.seguroCuota = seguroCta;
+  seguroCta = Math.round(seguroCta);
+
+  this.valorCuota += this.seguroCuota;
+
 }
 
-export interface DatosFinancieros {
   
-  ActividadEconomica?: Number;  
-  ActividadIndependiente?: Number;  
-  IngresoMensual?: Number;
-  
-}
-
-export interface OtrosDatos {
-  
-  AutorizaConsultaCentrales?: Boolean;  
-  AutorizaMareigua?: Boolean;  
-  ValorFinanciar?: Number;
-  IdentificacionVendedor?: Number;
-}
-
-export interface DatosVehiculo {
-  
-  Marca: number;
-}
-
-export interface ContactoInterface{
-
-  DatosBasicos?:DatosBasicos;
-  DatosFinancieros?:DatosFinancieros;
-  OtrosDatos?:OtrosDatos;
-  DatosVehiculo:DatosVehiculo;
 }

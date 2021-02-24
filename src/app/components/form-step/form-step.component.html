@@ -1,401 +1,388 @@
-<div class="titlesPpal row">
-    <div class="col-12 text-center titleOne">
-            <strong>Solicita la aprobación de tu crédito para comprar un Nissan, rápido y sin papeles</strong>
-    </div>
-</div>
-
 <div class="fullContainer">
 
-<!-- Modal TYC -->
-<div class="containerModal" *ngIf="modal">
-    <div class="cntTitlem">
-        <i class="arrowLeft material-icons md-48" (click)="modal=false">keyboard_arrow_left</i>
-        <p class="titleModal">Términos y condiciones</p>
-    </div>
-      <hr class="hrModal">
-      <div class="btnTyc">
-        <div class="squareModal">
-                Es requisito indispensable que el solicitante, entendido este como cualquier persona natural o jurídica que acceda al presente Portal (Nissan) y desee iniciar una solicitud para estudio de viabilidad de financiación de vehículo automotor con Santander Consumer Finance S.A.S (En adelante “Santander Consumer”), entienda y acepte de manera expresa, voluntaria e irrevocable los términos y condiciones que a continuación se indican:<br><br>
-                El presente Portal es solo un canal para recopilar información personal del solicitante, con la finalidad de poder realizar el estudio crediticio del mismo para la determinación de la aprobación o no del crédito.<br><br>                            
-                El otorgamiento de los planes de financiación anunciados así como las tasas ofrecidas, están sujetas al cumplimiento de las políticas de crédito de las entidades financieras aliadas de Santander Consumer y al perfil crediticio del solicitante.<br><br>
-                
-                Si el solicitante no está de acuerdo con estos Términos y Condiciones, o si el usuario es menor de 18 años no deberá hacer uso de este portal.<br><br>                         
-                El titular (solicitante) de la información entregada a través del Portal, autoriza a Santander Consumer a consultar, reportar y compartir información para: a) Realizar consultas, solicitudes y reportes de toda la información de comportamiento crediticio ante cualquiera de los operadores de información financiera. Así mismo, Santander Consumer queda autorizado para obtener información sobre relaciones comerciales del titular con otras entidades y consultar sus reportes ante las centrales de información; para ello se autoriza de manera expresa, previa e irrevocable a Santander Consumer a realizar ante cualquier operador de centrales de información, entre ellos Cifín o Datacrédito, cualquier operación o tratamiento efectuado sobre la información y los datos entregados, tanto de la empresa, como de sus representantes o directivos, incluyendo la consulta, solicitud, suministro, reporte, procesamiento y divulgación de toda la información relacionada con el comportamiento crediticio del titular, el origen de las obligaciones a su cargo, cualquier novedad, modificación, extinción, cumplimiento o incumplimiento de obligaciones.<br><br>                           
-                En su condición de responsable o encargado del tratamiento del manejo de datos personales que puede llegar a tener Santander Consumer, el titular autoriza para efectos de la Ley Estatutaria de Protección de Datos Personales (Ley 1581 de 2012) o de la norma que la reemplace o sustituya, en concordancia con la Ley Estatutaria 1266 de 2008, por la cual se dictaron disposiciones generales del hábeas data y se reguló el manejo de información contenida en bases de datos personales, en especial la información financiera, crediticia y comercial, de servicios y la proveniente de terceros países, a: (i) Recolectar, obtener, compilar, ofrecer, vender, intercambiar, enviar, divulgar, modificar, emplear, almacenar, procesar, transferir a cualquier título, y, en general, administrar información proveniente del titular de los datos o sus legítimos representantes; de las fuentes de información con las que Santander Consumer celebre convenios o contratos para el efecto; de los registros, documentos o publicaciones a los cuales haya tenido acceso Santander Consumer; de otros bancos de datos o archivos de información cuyo objeto sea o no similar al de Santander Consumer; de autoridades públicas, nacionales o internacionales, que administren o lleven registros del cumplimiento e incumplimiento de obligaciones fiscales, parafiscales, relacionadas con la prevención del lavado de activos o de la financiación del terrorismo y cualquier otra información de carácter público; de bases de información pública y, en general, de cualquier otra permitida por la normatividad aplicable; (ii) Santander Consumer, debidamente autorizado por el titular, podrá suministrar la información que reposa en sus bases de datos a las siguientes personas: a los titulares, a las personas debidamente autorizadas por éstos y a sus causahabientes; a las entidades financieras aliadas de Santander Consumer; a los usuarios de la información, dentro de los parámetros de la ley, de los contratos o convenios suscritos por Santander Consumer; a cualquier autoridad judicial, del poder ejecutivo o administrativa u órganos de control; a operadores de datos, de acuerdo con la normatividad vigente, y, en general a las demás personas autorizadas por la ley; (iii) Para efectos de soportes operativos, de procesamiento de información o tecnológicos, Santander Consumer queda expresamente autorizado, para compartir la información con empresas dedicadas a labores de “outsourcing” o prestación de servicios soportes para entidades financieras, dentro o fuera de Colombia, autorizando el Titular la divulgación, suministro y cesión de la información, para cuyo efectos Santander Consumer podrá recolectar, obtener, compilar, ofrecer, vender, intercambiar, enviar, divulgar, modificar, emplear, almacenar, procesar, transferir a cualquier título y, en general, hacer todo lo que implica la administración de información para terceros, dentro o fuera de Colombia. Cuando se haga entrega o cesión de información a otros países, se realizará con observancia de la legislación colombiana y las instrucciones de las autoridades correspondientes en la materia.<br><br>                            
-                Entiendo y acepto que Santander Consumer tenga publicadas sus políticas de recolección, uso, y administración de la información personal en la página www.santanderconsumer.co
-        </div>                    
-
-        <div class="col-12 col-sm-12 col-md-12 contButton">
-                <button mat-button class="full-width siguiente" (click)="checkTyc()">Aceptar</button>
-        </div>  
-    </div>            
-</div>
-
-<!-- Finaliza Modal TYC -->
-
-
-
-<mat-horizontal-stepper [disableRipple]="true" linear="true">
-        <mat-step label="Calcula tu cuota" [stepControl]="formPs" class="primerStep" [editable]="editable">
-                            <!-- Formulario -->
-                            <form #formPs="ngForm">
-                                    <div class="row absolute dosStep">
-                                        <div class="col-12 col-sm-12">
-                                            <div class="cntTitle">
-                                                <div class="title">Calcula tu cuota</div>
-                                                <small><b class="obligatorio">*</b>Información requerida</small>
-                                            </div>
-                                        <hr>
-
-                                        </div>                                   
-                                        
-                                        <div class="col-12 col-sm-12">
-                                            <small>¿Cuánto dinero deseas financiar?<b class="obligatorio">*</b></small>
-                                                <mat-form-field id="inputDinero" class="full-width" appearance="outline">
-                                                        <input 
-                                                        matInput
-                                                        type="tel"
-                                                        currencyMask
-                                                        placeholder="¿Cuánto dinero deseas financiar?"
-                                                        name="valorFinanciar"
-                                                        #valorFinanciar="ngModel"
-                                                        [(ngModel)]="valorFinanciarCop"
-                                                        [options]="{ align: 'left', prefix: '$ ', thousands: '.', decimal: ',', precision: 0 }"
-                                                        [min]="minF"
-                                                        required>
-                                                        <mat-error id="uno" class="col-12 error" *ngIf="valorFinanciar.touched && valorFinanciar.errors?.required" class="error error col-12">Inserta el valor a financiar</mat-error>   
-                                                        <mat-error id="uno" class="col-12 error" *ngIf="valorFinanciar.touched && valorFinanciar.errors?.min" class="error error col-12">El valor mínimo debe ser $ {{minF | number:'1.0-0':'es'}}</mat-error>
-                                                </mat-form-field>
-                                        </div>
-
-                                        <div class="seleccionMeses">
-
-                                        <div class="col-12 col-sm-12 subTitulo">
-                                            <small>¿A cuántos meses quieres pagar?<b class="obligatorio">*</b></small>
-                                        </div>
-
-
-                                        <div class="contPeriodo">
-
-                                            <span class="radio">
-
-                                                <input id="cuarentaocho" [(ngModel)]="cuotas" name="cuarentaOcho"
-                                                    (click)="changeButtonCliente($event.target.value, valorFinanciarCop);"
-                                                    type="radio" value="48">
-                                                <div>
-                                                    <div class="mes">48 meses</div>
-                                                </div>
-                                            </span>
+    <!-- Modal TYC -->
+    <div class="containerModal" *ngIf="modal">
+        <div class="cntTitlem">
+            <i class="arrowLeft material-icons md-48" (click)="modal=false">keyboard_arrow_left</i>
+            <p class="titleModal">Términos y condiciones</p>
+        </div>
+          <hr class="hrModal">
+          <div class="btnTyc">
+            <div class="squareModal">
+                    Es requisito indispensable que el solicitante, entendido este como cualquier persona natural o jurídica que acceda al presente Portal (Dodge) y desee iniciar una solicitud para estudio de viabilidad de financiación de vehículo automotor con Santander Consumer Finance S.A.S (En adelante “Santander Consumer”), entienda y acepte de manera expresa, voluntaria e irrevocable los términos y condiciones que a continuación se indican:<br><br>
+                    El presente Portal es solo un canal para recopilar información personal del solicitante, con la finalidad de poder realizar el estudio crediticio del mismo para la determinación de la aprobación o no del crédito.<br><br>                            
+                    El otorgamiento de los planes de financiación anunciados así como las tasas ofrecidas, están sujetas al cumplimiento de las políticas de crédito de las entidades financieras aliadas de Santander Consumer y al perfil crediticio del solicitante.<br><br>
                     
-                                                <span class="radio">
-                    
-                                                    <input id="sesenta" [(ngModel)]="cuotas" name="seSenta"
-                                                        (click)="changeButtonCliente($event.target.value, valorFinanciarCop);"
-                                                        type="radio" value="60">
-                                                    <div>
-                                                        <div class="mes">60 meses</div>
-                                                    </div>
-                                                </span>
-
-                                                <span class="radio">
-
-                                                    <input id="setentados" [(ngModel)]="cuotas" name="setentaDos"
-                                                        (click)="changeButtonCliente($event.target.value, valorFinanciarCop);"
-                                                        type="radio" value="72">
-                                                    <div>
-                                                        <div class="mes">72 meses</div>
-                                                    </div>
-                                                </span>
-                                                <span class="radio">
+                    Si el solicitante no está de acuerdo con estos Términos y Condiciones, o si el usuario es menor de 18 años no deberá hacer uso de este portal.<br><br>                         
+                    El titular (solicitante) de la información entregada a través del Portal, autoriza a Santander Consumer a consultar, reportar y compartir información para: a) Realizar consultas, solicitudes y reportes de toda la información de comportamiento crediticio ante cualquiera de los operadores de información financiera. Así mismo, Santander Consumer queda autorizado para obtener información sobre relaciones comerciales del titular con otras entidades y consultar sus reportes ante las centrales de información; para ello se autoriza de manera expresa, previa e irrevocable a Santander Consumer a realizar ante cualquier operador de centrales de información, entre ellos Cifín o Datacrédito, cualquier operación o tratamiento efectuado sobre la información y los datos entregados, tanto de la empresa, como de sus representantes o directivos, incluyendo la consulta, solicitud, suministro, reporte, procesamiento y divulgación de toda la información relacionada con el comportamiento crediticio del titular, el origen de las obligaciones a su cargo, cualquier novedad, modificación, extinción, cumplimiento o incumplimiento de obligaciones.<br><br>                           
+                    En su condición de responsable o encargado del tratamiento del manejo de datos personales que puede llegar a tener Santander Consumer, el titular autoriza para efectos de la Ley Estatutaria de Protección de Datos Personales (Ley 1581 de 2012) o de la norma que la reemplace o sustituya, en concordancia con la Ley Estatutaria 1266 de 2008, por la cual se dictaron disposiciones generales del hábeas data y se reguló el manejo de información contenida en bases de datos personales, en especial la información financiera, crediticia y comercial, de servicios y la proveniente de terceros países, a: (i) Recolectar, obtener, compilar, ofrecer, vender, intercambiar, enviar, divulgar, modificar, emplear, almacenar, procesar, transferir a cualquier título, y, en general, administrar información proveniente del titular de los datos o sus legítimos representantes; de las fuentes de información con las que Santander Consumer celebre convenios o contratos para el efecto; de los registros, documentos o publicaciones a los cuales haya tenido acceso Santander Consumer; de otros bancos de datos o archivos de información cuyo objeto sea o no similar al de Santander Consumer; de autoridades públicas, nacionales o internacionales, que administren o lleven registros del cumplimiento e incumplimiento de obligaciones fiscales, parafiscales, relacionadas con la prevención del lavado de activos o de la financiación del terrorismo y cualquier otra información de carácter público; de bases de información pública y, en general, de cualquier otra permitida por la normatividad aplicable; (ii) Santander Consumer, debidamente autorizado por el titular, podrá suministrar la información que reposa en sus bases de datos a las siguientes personas: a los titulares, a las personas debidamente autorizadas por éstos y a sus causahabientes; a las entidades financieras aliadas de Santander Consumer; a los usuarios de la información, dentro de los parámetros de la ley, de los contratos o convenios suscritos por Santander Consumer; a cualquier autoridad judicial, del poder ejecutivo o administrativa u órganos de control; a operadores de datos, de acuerdo con la normatividad vigente, y, en general a las demás personas autorizadas por la ley; (iii) Para efectos de soportes operativos, de procesamiento de información o tecnológicos, Santander Consumer queda expresamente autorizado, para compartir la información con empresas dedicadas a labores de “outsourcing” o prestación de servicios soportes para entidades financieras, dentro o fuera de Colombia, autorizando el Titular la divulgación, suministro y cesión de la información, para cuyo efectos Santander Consumer podrá recolectar, obtener, compilar, ofrecer, vender, intercambiar, enviar, divulgar, modificar, emplear, almacenar, procesar, transferir a cualquier título y, en general, hacer todo lo que implica la administración de información para terceros, dentro o fuera de Colombia. Cuando se haga entrega o cesión de información a otros países, se realizará con observancia de la legislación colombiana y las instrucciones de las autoridades correspondientes en la materia.<br><br>                            
+                    Entiendo y acepto que Santander Consumer tenga publicadas sus políticas de recolección, uso, y administración de la información personal en la página www.santanderconsumer.co
+            </div>                    
     
-                                                    <input id="ochentacuatro" [(ngModel)]="cuotas" name="ochentaCuatro"
-                                                        (click)="changeButtonCliente($event.target.value, valorFinanciarCop);"
-                                                        type="radio" value="84">
-                                                    <div>
-                                                        <div class="mes">84 meses</div>
-                                                    </div>
-                                                </span>
-                    
-                                                
-                                            </div>
-                                            </div>
-
+            <div class="col-12 col-sm-12 col-md-12 contButton">
+                    <button mat-button class="full-width siguiente" (click)="checkTyc()">Aceptar</button>
+            </div>  
+        </div>            
+    </div>
+    
+    <!-- Finaliza Modal TYC -->
+    
+    
+    
+    <mat-horizontal-stepper [disableRipple]="true" linear="true">
+            <mat-step label="Calcula tu cuota" [stepControl]="formPs" class="primerStep" [editable]="editable">
+                                <!-- Formulario -->
+                                <form #formPs="ngForm">
+                                        <div class="row absolute dosStep">
                                             <div class="col-12 col-sm-12">
-                                                <small>Este será el valor aproximado de la cuota mensual:</small>
-                                                    <mat-form-field class="full-width negValue" appearance="outline">
-                                                            <input 
-                                                            matInput
-                                                            currencyMask
-                                                            placeholder="0"
-                                                            name="valorCuota"
-                                                            #Valorcuota="ngModel"
-                                                            [options]="{ align: 'left', prefix: '$ ', thousands: '.', decimal: ',', precision: 0 }"
-                                                            [(ngModel)]="valorCuota"
-                                                            required
-                                                            disabled>
-                                                            <!-- <mat-icon matSuffix (click)="verDetalles()">info</mat-icon> -->
-                                                        </mat-form-field>
-
-                                                        <div class="contDetalles" *ngIf="verDetalle">
-                                                           <small>Valor cuota: $ {{valorFinanciarCop == 0 || valorFinanciarCop == undefined ? 0 : valorCuota | number:'1.0-0':'es'}}<br>
-                                                            <!-- Costo total del seguro: $ {{valorFinanciarCop == 0 || valorFinanciarCop == undefined ? 0 :seguroTotal | number:'1.0-0':'es'}}<br>
-                                                            Cuota mensual del seguro: $ {{valorFinanciarCop == 0 || valorFinanciarCop == undefined ? 0 :seguroCuota | number:'1.0-0':'es'}}<br> -->
-                                                            Monto total a financiar: $ {{valorFinanciarCop == 0 || valorFinanciarCop == undefined ? 0 :valorFinanciarCop | number:'1.0-0':'es'}}<br></small>
-                                                        </div>
-                                            </div>
+                                                <div class="cntTitle">
+                                                    <div class="title">Calcula tu cuota</div>
+                                                    <small><b class="obligatorio">*</b>Información requerida</small>
+                                                </div>
+                                            <hr>
+    
+                                            </div>                                   
                                             
                                             <div class="col-12 col-sm-12">
-                                                    <!-- <small *ngIf="!verDetalle"><b class="obligatorio">** </b>Este valor corresponde al total sin seguros</small><br> -->
-                                                    <small class="infoRequerida"><b class="obligatorio">*</b>Información requerida</small>
-                                                    <hr>
-                                            </div>                    
-                                        
-                                        <div class="col-12 col-sm-12 col-md-12 contButton">
-                                                <button mat-button class="full-width siguiente" [disabled]="formPs.invalid || valorCuota === 0" matStepperNext>CONTINUAR</button>
-                                        </div>
-                                        
-                                    </div> <!-- Row -->
-                                </form>
-            
-                            
-                            
-        </mat-step>
-
-        <!-- Paso 2 -->
-
-        <mat-step label="Ingresa tus datos" [stepControl]="formTc" [editable]="editable" linear="true">
-
-            <form #formTc="ngForm" (ngSubmit)="sendCentrales()">
-                    <div class="row absolute unoStep">
-
-                        <div class="col-12 col-sm-12">
-                            <div class="cntTitle">
-                                <div class="title">Ingresa tus datos</div>
-                                <small><b class="obligatorio">*</b>Información requerida</small>
+                                                <small>¿Cuánto dinero deseas financiar?<b class="obligatorio">*</b></small>
+                                                    <mat-form-field id="inputDinero" class="full-width" appearance="outline">
+                                                            <input 
+                                                            matInput
+                                                            type="tel"
+                                                            currencyMask
+                                                            placeholder="¿Cuánto dinero deseas financiar?"
+                                                            name="valorFinanciar"
+                                                            #valorFinanciar="ngModel"
+                                                            [(ngModel)]="valorFinanciarCop"
+                                                            [options]="{ align: 'left', prefix: '$ ', thousands: '.', decimal: ',', precision: 0 }"
+                                                            (ngModelChange)="changeButtonCliente(cuotas)"
+                                                            [min]="minF"
+                                                            required>
+                                                            <mat-error id="uno" class="col-12 error" *ngIf="valorFinanciar.touched && valorFinanciar.errors?.required" class="error error col-12">Inserta el valor a financiar</mat-error>   
+                                                            <mat-error id="uno" class="col-12 error" *ngIf="valorFinanciar.touched && valorFinanciar.errors?.min" class="error error col-12">El valor mínimo debe ser $ {{minF | number:'1.0-0':'es'}}</mat-error>
+                                                    </mat-form-field>
+                                            </div>
+    
+                                            <div class="seleccionMeses">
+    
+                                            <div class="col-12 col-sm-12 subTitulo">
+                                                <small>¿A cuántos meses quieres pagar?<b class="obligatorio">*</b></small>
+                                            </div>
+    
+    
+                                            <div class="contPeriodo">
+    
+                                                <span class="radio">
+    
+                                                    <input id="cuarentaocho" [(ngModel)]="cuotas" name="cuarentaOcho"
+                                                        (click)="changeButtonCliente($event.target);"
+                                                        type="radio" value="48">
+                                                    <div>
+                                                        <div class="mes">48 meses</div>
+                                                    </div>
+                                                </span>
+                        
+                                                    <span class="radio">
+                        
+                                                        <input id="sesenta" [(ngModel)]="cuotas" name="seSenta"
+                                                            (click)="changeButtonCliente($event.target);"
+                                                            type="radio" value="60">
+                                                        <div>
+                                                            <div class="mes">60 meses</div>
+                                                        </div>
+                                                    </span>
+    
+                                                    <span class="radio">
+    
+                                                        <input id="setentados" [(ngModel)]="cuotas" name="setentaDos"
+                                                            (click)="changeButtonCliente($event.target);"
+                                                            type="radio" value="72">
+                                                        <div>
+                                                            <div class="mes">72 meses</div>
+                                                        </div>
+                                                    </span>
+                                                    <span class="radio">
+        
+                                                        <input id="ochentacuatro" [(ngModel)]="cuotas" name="ochentaCuatro"
+                                                            (click)="changeButtonCliente($event.target);"
+                                                            type="radio" value="84">
+                                                        <div>
+                                                            <div class="mes">84 meses</div>
+                                                        </div>
+                                                    </span>
+                        
+                                                    
+                                                </div>
+                                                </div>
+    
+                                                <div *ngIf="cuotas" class="col-12 col-sm-12">
+                                                    <small>Este será el valor aproximado de la cuota mensual:</small>
+                                                        <mat-form-field class="full-width negValue" appearance="outline">
+                                                                <input 
+                                                                matInput
+                                                                currencyMask
+                                                                placeholder="0"
+                                                                name="valorCuota"
+                                                                #Valorcuota="ngModel"
+                                                                [options]="{ align: 'left', prefix: '$ ', thousands: '.', decimal: ',', precision: 0 }"
+                                                                [(ngModel)]="valorCuota"
+                                                                required
+                                                                disabled>
+                                                                <!-- <mat-icon matSuffix (click)="verDetalles()">info</mat-icon> -->
+                                                            </mat-form-field>
+    
+                                                </div>
+                                                
+                                                <div class="col-12 col-sm-12">
+                                                        <!-- <small *ngIf="!verDetalle"><b class="obligatorio">** </b>Este valor corresponde al total sin seguros</small><br> -->
+                                                        <small class="infoRequerida"><b class="obligatorio">*</b>Información requerida</small>
+                                                        <hr>
+                                                </div>                    
+                                            
+                                            <div class="col-12 col-sm-12 col-md-12 contButton">
+                                                    <img [src]="const.logoSantander" class="logoSantanderTablet" alt="">
+                                                    <button mat-button class="full-width siguiente" [disabled]="formPs.invalid || valorCuota === 0 || !cuotas" matStepperNext>CONTINUAR</button>
+                                            </div>
+                                            
+                                        </div> <!-- Row -->
+                                    </form>
+                
+                                
+                                
+            </mat-step>
+    
+            <!-- Paso 2 -->
+    
+            <mat-step label="Ingresa tus datos" [stepControl]="formTc" [editable]="editable" linear="true">
+    
+                <form #formTc="ngForm" (ngSubmit)="sendCentrales()">
+                        <div class="row absolute unoStep">
+    
+                            <div class="col-12 col-sm-12">
+                                <div class="cntTitle">
+                                    <div class="title">Ingresa tus datos</div>
+                                    <small><b class="obligatorio">*</b>Información requerida</small>
+                                </div>
+                            <hr>
+    
                             </div>
-                        <hr>
-
+    
+                        <div class="col-12 col-sm-12 mb-3">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>¿Cómo te llamas?</mat-label>
+                            <input 
+                            matInput 
+                            placeholder="¿Cómo te llamas?"
+                            name="Nombre1"
+                            minlength="3"
+                            maxlength="90"
+                            [(ngModel)]="centrales.contacto.DatosBasicos.Nombre1"
+                            #nombre="ngModel"
+                            (keypress)="patternCoincide($event, env.patternLetter)"
+                            [(pattern)]="env.patternLetter"
+                            required>
+                                <mat-error class="col-12 error" *ngIf="nombre.touched && nombre.errors?.required">Necesitamos saber tu nombre</mat-error>
+                                <mat-error class="col-12 error" *ngIf="nombre.touched && nombre.errors?.minlength">Ingresa un nombre más largo</mat-error>
+                                <mat-error class="col-12 error" *ngIf="nombre.touched && nombre.errors?.pattern">Ingresa un nombre válido</mat-error>
+                        </mat-form-field>
                         </div>
-
-                    <div class="col-12 col-sm-12 mb-3">
-                    <mat-form-field class="full-width" appearance="outline">
-                        <mat-label>¿Cómo te llamas?</mat-label>
-                        <input 
-                        matInput 
-                        placeholder="¿Cómo te llamas?"
-                        name="Nombre1"
-                        minlength="3"
-                        maxlength="90"
-                        [(ngModel)]="contacto.DatosBasicos.Nombre1"
-                        #nombre="ngModel"
-                        (keypress)="patternCoincide($event, env.patternLetter)"
-                        [(pattern)]="env.patternLetter"
-                        required>
-                            <mat-error class="col-12 error" *ngIf="nombre.touched && nombre.errors?.required">Necesitamos saber tu nombre</mat-error>
-                            <mat-error class="col-12 error" *ngIf="nombre.touched && nombre.errors?.minlength">Ingresa un nombre más largo</mat-error>
-                            <mat-error class="col-12 error" *ngIf="nombre.touched && nombre.errors?.pattern">Ingresa un nombre válido</mat-error>
-                    </mat-form-field>
-                    </div>
-
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3">
+    
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3">
+                                <mat-form-field class="full-width" appearance="outline">
+                                        <select 
+                                            matNativeControl
+                                            name="TipoDocumento"
+                                            [(ngModel)]="centrales.contacto.DatosBasicos.TipoDocumento"
+                                            #tipoDocumento="ngModel" 
+                                            required
+                                        >
+                                            <option *ngFor="let obj of env.documentos" [(ngValue)]="obj.value" [disabled]="obj.value == 0">{{obj.name}}</option>
+                                            <mat-error *ngIf="tipoDocumento.touched && tipoDocumento.errors?.required">Necesitamos saber tu tipo de identificación</mat-error>
+                                        </select>
+                                </mat-form-field>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3">
+                        <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>Número de Identificación</mat-label>
+                                <input 
+                                matInput
+                                type="tel"
+                                name="NumeroDocumento"
+                                [(ngModel)]="centrales.contacto.DatosBasicos.NumeroDocumento"
+                                #numeroDocumento="ngModel"
+                                minlength="6"
+                                maxlength="15"
+                                placeholder="Número de Identificación"
+                                (keypress)="patternCoincide($event, env.patternNumber)"
+                                [(pattern)]="env.patternNumber"
+                                required>
+                                    <mat-error class="col-12 error" *ngIf="numeroDocumento.touched && numeroDocumento.errors?.required">Necesitamos saber tu número de identificación</mat-error>
+                                    <mat-error class="col-12 error" *ngIf="numeroDocumento.errors?.minlength">Mínimo {{numeroDocumento.errors.minlength.requiredLength}} dígitos</mat-error>
+                                    <mat-error class="col-12 error" *ngIf="numeroDocumento.errors?.pattern">Ingresa un número de identificación válido</mat-error>                    
+                        </mat-form-field>
+                        </div>
+    
+                        <div class="col-12 col-sm-12 col-12-md col-12-lg mb-3">
+                            <mat-form-field class="full-width" appearance="outline">
+                                    <mat-label>Teléfono de contacto</mat-label>
+                                    <input 
+                                    matInput 
+                                    type="tel"  
+                                    placeholder="Teléfono de contacto"
+                                    name="Celular"
+                                    [(ngModel)]="centrales.contacto.DatosBasicos.Celular"
+                                    minlength="10" 
+                                    maxlength="10"
+                                    #celular="ngModel"
+                                    (keypress)="patternCoincide($event, env.patternNumber)"
+                                    [(pattern)]="env.patternCel"
+                                    required
+                                    >
+                                        <mat-error class="col-12 error"*ngIf="celular.touched && celular.errors?.required">Necesitamos saber tu teléfono de contacto</mat-error>
+                                        <mat-error class="col-12 error"*ngIf="celular.errors?.minlength">Mínimo {{celular.errors.minlength.requiredLength}} dígitos</mat-error>
+                                        <mat-error class="col-12 error"*ngIf="celular.errors?.pattern">Ingresa un teléfono de contacto válido</mat-error>
+                            </mat-form-field>
+                        </div>
+    
+                        <div class="col-12 col-sm-12 col-12-md col-12-lg mb-3">
+                            <mat-form-field class="full-width" appearance="outline">
+                                    <mat-label>Correo electrónico</mat-label>
+                                <input
+                                matInput
+                                type="text"
+                                placeholder="Correo electrónico"
+                                name="CorreoPersonal"
+                                [(ngModel)]="centrales.contacto.DatosBasicos.CorreoPersonal"
+                                #correoPersonal="ngModel"
+                                [(pattern)]="env.patternMail"
+                                required
+                                >                                       
+                                <mat-error *ngIf="correoPersonal.touched && correoPersonal.errors?.required" class="error">Necesitamos saber tu correo electrónico</mat-error>
+                                <mat-error *ngIf="correoPersonal.touched && correoPersonal.errors?.pattern" class="error">Ingresa un correo electrónico válido</mat-error>                                                            
+                            </mat-form-field>                                                                  
+                        </div>
+    
+                        <div class="col-12 col-sm-12 col-12-md col-12-lg mb-3">
                             <mat-form-field class="full-width" appearance="outline">
                                     <select 
                                         matNativeControl
-                                        name="TipoDocumento"
-                                        [(ngModel)]="contacto.DatosBasicos.TipoDocumento"
+                                        name="ActividadEconomica"
+                                        [(ngModel)]="centrales.contacto.DatosFinancieros.ActividadEconomica"
+                                        #ocupacion="ngModel"
                                         #tipoDocumento="ngModel" 
                                         required
                                     >
-                                        <option *ngFor="let obj of env.documentos" [ngValue]="obj.value" [disabled]="obj.value == 0">{{obj.name}}</option>
-                                        <mat-error *ngIf="tipoDocumento.touched && tipoDocumento.errors?.required">Necesitamos saber tu tipo de identificación</mat-error>
+                                        <option *ngFor="let obj of env.ocupaciones" [ngValue]="obj.value" [disabled]="obj.value == 0">{{obj.name}}</option>
+                                        <small class="col-12 error" *ngIf="ocupacion.touched && ocupacion.errors?.required">Necesitamos saber tu Ocupación</small>
                                     </select>
                             </mat-form-field>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 mb-3">
-                    <mat-form-field class="full-width" appearance="outline">
-                            <mat-label>Número de Identificación</mat-label>
-                            <input 
-                            matInput
-                            type="tel"
-                            name="NumeroDocumento"
-                            [(ngModel)]="contacto.DatosBasicos.NumeroDocumento"
-                            #numeroDocumento="ngModel"
-                            minlength="6"
-                            maxlength="15"
-                            placeholder="Número de Identificación"
-                            (keypress)="patternCoincide($event, env.patternNumber)"
-                            [(pattern)]="env.patternNumber"
-                            required>
-                                <mat-error class="col-12 error" *ngIf="numeroDocumento.touched && numeroDocumento.errors?.required">Necesitamos saber tu número de identificación</mat-error>
-                                <mat-error class="col-12 error" *ngIf="numeroDocumento.errors?.minlength">Mínimo {{numeroDocumento.errors.minlength.requiredLength}} dígitos</mat-error>
-                                <mat-error class="col-12 error" *ngIf="numeroDocumento.errors?.pattern">Ingresa un número de identificación válido</mat-error>                    
-                    </mat-form-field>
-                    </div>
-
-                    <div class="col-12 col-sm-12 col-12-md col-12-lg mb-3">
-                        <mat-form-field class="full-width" appearance="outline">
-                                <mat-label>Teléfono de contacto</mat-label>
-                                <input 
-                                matInput 
-                                type="tel"  
-                                placeholder="Teléfono de contacto"
-                                name="Celular"
-                                [(ngModel)]="contacto.DatosBasicos.Celular"
-                                minlength="10" 
-                                maxlength="10"
-                                #celular="ngModel"
-                                (keypress)="patternCoincide($event, env.patternNumber)"
-                                [(pattern)]="env.patternCel"
-                                required
-                                >
-                                    <mat-error class="col-12 error"*ngIf="celular.touched && celular.errors?.required">Necesitamos saber tu teléfono de contacto</mat-error>
-                                    <mat-error class="col-12 error"*ngIf="celular.errors?.minlength">Mínimo {{celular.errors.minlength.requiredLength}} dígitos</mat-error>
-                                    <mat-error class="col-12 error"*ngIf="celular.errors?.pattern">Ingresa un teléfono de contacto válido</mat-error>
-                        </mat-form-field>
-                    </div>
-
-                    <div class="col-12 col-sm-12 col-12-md col-12-lg mb-3">
-                        <mat-form-field class="full-width" appearance="outline">
-                                <mat-label>Correo electrónico</mat-label>
-                            <input
-                            matInput
-                            type="text"
-                            placeholder="Correo electrónico"
-                            name="CorreoPersonal"
-                            [(ngModel)]="contacto.DatosBasicos.CorreoPersonal"
-                            #correoPersonal="ngModel"
-                            [(pattern)]="env.patternMail"
-                            required
-                            >                                       
-                            <mat-error *ngIf="correoPersonal.touched && correoPersonal.errors?.required" class="error">Necesitamos saber tu correo electrónico</mat-error>
-                            <mat-error *ngIf="correoPersonal.touched && correoPersonal.errors?.pattern" class="error">Ingresa un correo electrónico válido</mat-error>                                                            
-                        </mat-form-field>                                                                  
-                    </div>
-
-                    <div class="col-12 col-sm-12 col-12-md col-12-lg mb-3">
-                        <mat-form-field class="full-width" appearance="outline">
-                                <select 
-                                    matNativeControl
-                                    name="ActividadEconomica"
-                                    [(ngModel)]="contacto.DatosFinancieros.ActividadEconomica"
-                                    #ocupacion="ngModel"
-                                    #tipoDocumento="ngModel" 
-                                    required
-                                >
-                                    <option *ngFor="let obj of env.ocupaciones" [ngValue]="obj.value" [disabled]="obj.value == 0">{{obj.name}}</option>
-                                    <small class="col-12 error" *ngIf="ocupacion.touched && ocupacion.errors?.required">Necesitamos saber tu Ocupación</small>
-                                </select>
-                        </mat-form-field>
-                    </div>
-
-                    <div class="col-12 col-sm-12 mb-3">
-                            <mat-form-field class="full-width" appearance="outline">
-                                    <mat-label>Ingresos Mensuales</mat-label>
-                                    <input 
-                                    matInput
-                                    currencyMask
-                                    [options]="{ align: 'left', prefix: '$ ', thousands: '.', decimal: ',', precision: 0 }"
-                                    placeholder="Ingresos Mensuales"
-                                    name="ingresoMensual"
-                                    #ingresoMensual="ngModel"
-                                    [(ngModel)]="contacto.DatosFinancieros.IngresoMensual"
-                                    [min]="min"                                    
-                                    required>                               
-                                    <mat-error *ngIf="ingresoMensual.touched && ingresoMensual.errors?.required">Inserta tus ingresos mensuales</mat-error>       
-                                    <mat-error *ngIf="ingresoMensual.touched && ingresoMensual.errors?.min" class="error col-12">Ingresa un valor mayor</mat-error>
-                            </mat-form-field>
-                    </div>
-
-
-                        <div class="row">
-                            <div class="col-12 col-sm-6 col-md-4 col-lg-4">
-                                <img class="logSantander" src="assets/LogoSantanderConsumerGris.png" alt="">
+                        </div>
+    
+                        <div class="col-12 col-sm-12 mb-3">
+                                <mat-form-field class="full-width" appearance="outline">
+                                        <mat-label>Ingresos Mensuales</mat-label>
+                                        <input 
+                                        matInput
+                                        currencyMask
+                                        [options]="{ align: 'left', prefix: '$ ', thousands: '.', decimal: ',', precision: 0 }"
+                                        placeholder="Ingresos Mensuales"
+                                        name="ingresoMensual"
+                                        #ingresoMensual="ngModel"
+                                        [(ngModel)]="centrales.contacto.DatosFinancieros.IngresoMensual"
+                                        [min]="min"                                    
+                                        required>                               
+                                        <mat-error *ngIf="ingresoMensual.touched && ingresoMensual.errors?.required">Inserta tus ingresos mensuales</mat-error>       
+                                        <mat-error *ngIf="ingresoMensual.touched && ingresoMensual.errors?.min" class="error col-12">Ingresa un valor mayor</mat-error>
+                                </mat-form-field>
+                        </div>
+    
+    
+                            <div class="row">
+                                <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+                                    <img class="logSantander" src="assets/LogoSantanderConsumerGris.png" alt="">
+                                </div>
+                                
+                                <div class="col-12 col-sm-6 col-md-8 col-lg-8">
+                                <p class="tycSmall">
+                                        SANTANDER CONSUMER o el TERCERO AUTORIZADO quedan autorizados para obtener información sobre mis relaciones comerciales con otras entidades y consultar mis reportes ante las centrales de información.
+                                </p>    
+                                </div>  
                             </div>
-                            
-                            <div class="col-12 col-sm-6 col-md-8 col-lg-8">
-                            <p class="tycSmall">
-                                    SANTANDER CONSUMER o el TERCERO AUTORIZADO quedan autorizados para obtener información sobre mis relaciones comerciales con otras entidades y consultar mis reportes ante las centrales de información.
-                            </p>    
-                            </div>  
+    
+                            <div class="checkTycOk col-12 col-sm-12 text-center">
+                                <mat-checkbox 
+                                required
+                                value="" 
+                                id="defaultCheck1"
+                                name="AutorizaConsultaCentrales"
+                                [(ngModel)]="centrales.contacto.OtrosDatos.AutorizaConsultaCentrales"
+                                (click)="chechedc()"
+                                #autorizaConsultaCentrales="ngModel"
+                                ></mat-checkbox>
+                                Acepto los <strong class="pointer" (click)="modal=true">términos y condiciones</strong>
+                                <hr>
+                            </div>
+    
+                            <div class="col-12 col-sm-12 col-md-12 contButton">
+                                    <button mat-button id="stepOne" [disabled]="formTc.invalid" class="full-width siguiente" (ngSubmit)="sendCentrales()" matStepperNext>Solicitar</button>
+                                    <!-- <button class="col-12 full-width anterior" matStepperPrevious mat-button>Anterior</button> -->
+                            </div>
+                        </div> <!-- Row -->
+                    </form> 
+    
+                        
+    
+                    <!-- </form>  -->
+            </mat-step><!-- Finaliza Paso 2 -->
+            
+    <!-- Paso 3 --><mat-step label="Respuesta inmediata" completed="false">
+    
+            <div class="row absolute tresStep">
+                    <div *ngIf="sppiner" class="col-12 spinnerCont">
+                        <mat-spinner></mat-spinner>
+                    </div>
+                    <div class="text-center col-12 col-sm-12">                    
+                        <div *ngIf="aprobado" class="col-12 container text-center animated fadeIn">                                     
+                            <p class="title">¡Listo!</p>
+                            <hr>  
+                            <img class="img-fluid" src="assets/aprobado.png" alt="">
+                            <p class="aprobado">¡Tu crédito es viable!</p>
+                            <p class="small">
+                                Pronto uno de nuestros asesores te llamara para acompañarte hasta que tengas tu vehículo.
+                            </p>
+                            <hr>                    
                         </div>
-
-                        <div class="checkTycOk col-12 col-sm-12 text-center">
-                            <mat-checkbox 
-                            required
-                            color="primary"
-                            value="" 
-                            id="defaultCheck1"
-                            name="AutorizaConsultaCentrales"
-                            [(ngModel)]="contacto.OtrosDatos.AutorizaConsultaCentrales"
-                            (click)="chechedc()"
-                            #autorizaConsultaCentrales="ngModel"
-                            ></mat-checkbox>
-                            Acepto los <strong class="pointer" (click)="modal=true">términos y condiciones</strong>
-                            <hr>
-                        </div>
-
-                        <div class="col-12 col-sm-12 col-md-12 contButton">
-                                <button mat-button id="stepOne" [disabled]="formTc.invalid" class="full-width siguiente" (ngSubmit)="sendCentrales()" matStepperNext>Solicitar</button>
-                                <!-- <button class="col-12 full-width anterior" matStepperPrevious mat-button>Anterior</button> -->
-                        </div>
-                    </div> <!-- Row -->
-                </form> 
-
                     
-
-                <!-- </form>  -->
-        </mat-step><!-- Finaliza Paso 2 -->
-        
-<!-- Paso 3 --><mat-step label="Respuesta inmediata" completed="false">
-
-        <div class="row absolute tresStep">
-                <div *ngIf="sppiner" class="col-12 spinnerCont">
-                    <mat-spinner></mat-spinner>
-                </div>
-                <div class="text-center col-12 col-sm-12">                    
-                    <div *ngIf="aprobado" class="col-12 container text-center animated fadeIn">                                     
-                        <p class="title">¡Listo!</p>
+                    <!-- Negado -->
+                    
+                    <div *ngIf="negado" class="col-12 container text-center animated fadeIn">
+                        <p class="title">¡Lo sentimos!</p>
                         <hr>  
-                        <img class="img-fluid" src="assets/aprobado.png" alt="">
-                        <p class="aprobado">¡Tu crédito es viable!</p>
+                        <img class="img-fluid" src="assets/negado.png" alt="">
+                        <p class="negado">¡Tu solicitud de crédito no es viable en estos momentos!</p>
                         <p class="small">
-                            Pronto uno de nuestros asesores te llamara para acompañarte hasta que tengas tu vehículo.
+                            Esperamos que cuentes con nosotros en una próxima oportunidad.
                         </p>
-                        <hr>                    
+                        <hr>
                     </div>
-                
-                <!-- Negado -->
-                
-                <div *ngIf="negado" class="col-12 container text-center animated fadeIn">
-                    <p class="title">¡Lo sentimos!</p>
-                    <hr>  
-                    <img class="img-fluid" src="assets/negado.png" alt="">
-                    <p class="negado">¡Tu solicitud de crédito no es viable en estos momentos!</p>
-                    <p class="small">
-                        Esperamos que cuentes con nosotros en una próxima oportunidad.
-                    </p>
-                    <hr>
-                </div>
-
-                <div class="col-12 col-sm-12 col-md-12 contButton">
-                    <button mat-button class="full-width siguiente" id="stepTwo" (click)="reload()">VOLVER A NISSAN</button>
-                </div>
-          </div>
-        </div>
-        </mat-step><!-- Finaliza Paso 3 -->        
-    </mat-horizontal-stepper>
-
-</div>
-
-    <div class="row">
-            <div class="col-12 pie">
-                    <div class="contPie">
-                    <img src="assets/costumerFinance.png" alt="" class="santanderGray"><br>
-                    <p class="small">© {{dateNow}} – Solicitud de Crédito - Entidad vigilada por la Superintendencia Financiera de Colombia</p>
+    
+                    <div class="col-12 col-sm-12 col-md-12 contButton">
+                        <button mat-button class="full-width siguiente" id="stepTwo" (click)="reload()">VOLVER A NISSAN</button>
                     </div>
+              </div>
             </div>
+            </mat-step><!-- Finaliza Paso 3 -->        
+        </mat-horizontal-stepper>
+    
     </div>
-            
-            
-
-      
+    
+        <div class="row">
+                <div class="col-12 pie">
+                        <div></div>
+                        <div class="contPie">
+                        <img src="assets/costumerFinance.png" alt="" class="santanderGray"><br>
+                        <p class="small">© {{dateNow}} – Solicitud de Crédito - Entidad vigilada por la Superintendencia Financiera de Colombia</p>
+                        </div>
+                        <div></div>
+                </div>
+        </div>

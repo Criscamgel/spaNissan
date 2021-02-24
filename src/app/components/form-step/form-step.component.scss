@@ -19,6 +19,19 @@
         background-color: transparent;
     }
 }
+
+.logoSantanderTablet{
+    display: none;
+    @include tablet(){
+        display: block;
+    } 
+    @include deskopt(){
+        display: block; 
+    }
+    @include bigScreen(){
+        display: block;
+    }
+}
 .containerModal{
     grid-column: 2;
     grid-row: 1/2;
