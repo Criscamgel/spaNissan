@@ -14,7 +14,7 @@ export const environment = {
    ],
 
    min: 1200000,
-   minF: 20000000,
+   minF: 10000000,
 
    ocupaciones:[
     {value:null, name:"Selecciona tu ocupación"},
